@@ -26,7 +26,7 @@ const ItemDetail = ({ id, nombre, precio, img, stock }) => {
             {
                 //Acá empleamos la logica de montaje y desmotaje del contador
 
-                agregarCantidad > 0 ? (<Link to="/cart"> Terminar Compra</Link>) : (<Contador inicial={1} stock={stock} funcionAgregar={manejadorCantidad} />)
+                agregarCantidad > 0 ? (<Link className='terminar-compra' to="/cart"> Terminar Compra</Link>) : (<Contador inicial={1} stock={stock} funcionAgregar={manejadorCantidad} />)
             }
 
         </div>

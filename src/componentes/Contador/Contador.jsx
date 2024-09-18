@@ -1,5 +1,6 @@
-import { useState } from "react"
-
+import React, { useState } from "react";
+import Swal from 'sweetalert2';
+import "./Contador.css";  // Asegúrate de tener el CSS separado
 
 const Contador = ({ inicial, stock, funcionAgregar }) => {
 
@@ -17,17 +18,32 @@ const Contador = ({ inicial, stock, funcionAgregar }) => {
         }
     }
 
+    const handleAgregar = () => {
+        funcionAgregar(contador);
+        // Mostrar alerta SweetAlert
+        Swal.fire({
+            title: '¡Producto agregado!',
+            text: `Has agregado ${contador} productos al carrito.`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            timer: 2000, // Se cerrará automáticamente después de 2 segundos
+            timerProgressBar: true, // Barra de progreso del temporizador
+        });
+    }
+
     return (
         <>
-            <div>
-                <button onClick={restarContador}> - </button>
-                <strong>{contador}</strong>
-                <button onClick={sumarContador}> + </button>
-            </div>
+            <div className="contador-container">
+                <div className="contador-controls">
+                    <button onClick={restarContador}> - </button>
+                    <strong>{contador}</strong>
+                    <button onClick={sumarContador}> + </button>
+                </div>
 
-            <button onClick={() => funcionAgregar(contador)}> Agregar al carrito</button>
+                <button className="agregar-btn" onClick={handleAgregar}> Agregar al carrito</button>
+            </div>
         </>
     )
 }
 
-export default Contador
+export default Contador;
